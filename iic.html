@@ -357,101 +357,160 @@
             color: var(--accent);
         }
 
-        /* Team Section */
-        .team-section {
-            padding: 100px 0;
-            background: var(--light);
-            position: relative;
-        }
+            /* Team Section */
+.team-section {
+    padding: 80px 0;
+    background: var(--light);
+    position: relative;
+}
 
-        .carousel-container {
-            margin-bottom: 80px;
-        }
+.carousel-container {
+    margin-bottom: 40px;
+    background: var(--card);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .carousel-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--primary);
-            font-size: 1.8rem;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+.carousel-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary);
+    font-size: 1.4rem;
+    position: relative;
+    display: inline-block;
+}
 
-        .carousel-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 10px;
-        }
+.carousel-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 10px;
+}
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 30px;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
 
-        .team-member {
-            background: var(--card);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            position: relative;
-        }
+.team-member {
+    background: var(--card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
 
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
 
-        .profile-container {
-            position: relative;
-            height: 240px;
-            overflow: hidden;
-        }
+.profile-container {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
 
-        .profile-img {
-            width: 100%;
-            height: 100%;
-        }
+.profile-img {
+    width: 100%;
+    height: 100%;
+}
 
-        .profile-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
 
-        .member-info {
-            padding: 20px;
-            text-align: center;
-            background: rgba(26, 62, 111, 0.03);
-        }
+.member-info {
+    padding: 15px;
+    text-align: center;
+    background: rgba(26, 62, 111, 0.03);
+}
 
-        .member-info h3 {
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
+.member-info h3 {
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
 
-        .member-info p {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0;
-            font-size: 0.9rem;
-        }
+.member-info p {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    .carousel-container {
+        padding: 25px 20px;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    
+    .profile-container {
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-section {
+        padding: 60px 0;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+    
+    .profile-container {
+        height: 150px;
+    }
+    
+    .member-info {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-container {
+        padding: 20px 15px;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    .profile-container {
+        height: 130px;
+    }
+    
+    .member-info h3 {
+        font-size: 0.85rem;
+    }
+    
+    .member-info p {
+        font-size: 0.75rem;
+    }
+}
 
         /* Events Section */
         .events-section {
@@ -979,10 +1038,51 @@
     </section>
 
     <!-- Team Section -->
-    <section class="team-section" id="team">
-        <h2 class="section-title">Our <span>Leadership Team 1</span></h2>
-
-        
+<section class="team-section" id="team">
+    <h2 class="section-title">Our <span>Leadership Team</span></h2>
+    
+    <!-- New Faculty Coordinators Section -->
+    <div class="carousel-container">
+        <h3 class="carousel-title">Faculty Coordinators</h3>
+        <div class="team-grid">
+            <!-- Faculty Team Members -->
+            <div class="team-member">
+                <div class="profile-container">
+                    <div class="profile-img">
+                        <img src="images/Dr_Amala.png" alt="Dr. Amala S">
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Dr. Amala S</h3>
+                    <p>IIC President</p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="profile-container">
+                    <div class="profile-img">
+                        <img src="images/Dr_Karthik.png" alt="Dr. Karthik Rao">
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Dr. Karthik Rao</h3>
+                    <p>IIC Convener</p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="profile-container">
+                    <div class="profile-img">
+                        <img src="images/Dr_Meera.png" alt="Dr. Meera Nair">
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Dr. Meera Nair</h3>
+                    <p>IIC Secretary</p>
+                </div>
+            </div>
+        </div>
+    </div>
         
         <div class="carousel-container">
             <h3 class="carousel-title">Core Members 2</h3>
@@ -1537,43 +1637,7 @@
         </div>
     </div>
     
-    <div class="event-modal" id="ip-workshop-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>IP Rights Workshop 2023</h3>
-                <button class="close-modal" onclick="closeEventModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="IP Workshop" class="modal-poster">
-                
-                <div class="event-details">
-                    <div class="event-info">
-                        <h4>Event Information</h4>
-                        <p><strong>Date:</strong> March 18, 2023</p>
-                        <p><strong>Time:</strong> 10:00 AM - 2:00 PM</p>
-                        <p><strong>Venue:</strong> Law Department Seminar Hall</p>
-                        <p><strong>Participants:</strong> 120 innovators and researchers</p>
-                    </div>
-                    
-                    <div class="event-highlights">
-                        <h4>Event Highlights</h4>
-                        <ul>
-                            <li>Types of intellectual property</li>
-                            <li>Patent filing process</li>
-                            <li>Case studies of successful patents</li>
-                            <li>Q&A with IP experts</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="event-description">
-                    <h4>About the Event</h4>
-                    <p>The Intellectual Property Rights Workshop provided crucial knowledge about protecting innovations through proper intellectual property management. This workshop was designed for researchers, innovators, and entrepreneurs who wanted to understand how to safeguard their creative works and inventions.</p>
-                    <p>Participants learned about different types of intellectual property including patents, trademarks, copyrights, and trade secrets. The session included practical guidance on the patent application process, strategies for commercializing intellectual property, and case studies of successful IP management from both academia and industry.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+
     
 
     <!-- Footer -->
