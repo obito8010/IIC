@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institution's Innovation Council</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a3e6f;
+            --secondary: #0d2b4e;
+            --accent: #f9a826;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --card: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body.dark-theme {
+            --light: #121212;
+            --dark: #f8f9fa;
+            --card: #1e1e1e;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            animation: expandLine 1.5s ease-out forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(26, 62, 111, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(26, 62, 111, 0.3);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes expandLine {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .college-logo {
+            height: 45px;
+        }
+
+        .iic-logo {
+            height: 55px;
+        }
+
+        .logo-separator {
+            height: 40px;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(249, 168, 38, 0.1);
+            transform: rotate(30deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 180px 5% 100px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            padding-right: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+
+        .hero-logo {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .logo-circle {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .logo-circle::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--card);
+            z-index: 1;
+        }
+
+        .logo-circle img {
+            width: 280px;
+            height: 280px;
+            object-fit: contain;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 5%;
+            background: var(--card);
+            position: relative;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+            transform-origin: top;
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .about-container p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .about-container h3 {
+            margin: 40px 0 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-container h3 i {
+            animation: pulse 2s infinite;
+            color: var(--accent);
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background: var(--light);
+            position: relative;
+        }
+
+        .carousel-container {
+            margin-bottom: 80px;
+        }
+
+        .carousel-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .carousel-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-member {
+            background: var(--card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-container {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .member-info {
+            padding: 20px;
+            text-align: center;
+            background: rgba(26, 62, 111, 0.03);
+        }
+
+        .member-info h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .member-info p {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Events Section */
+        .events-section {
+            padding: 100px 5%;
+            background: var(--card);
+            position: relative;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 35px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .event-card {
+            cursor: pointer;
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            position: relative;
+            height: 500px;
+            perspective: 1000px;
+        }
+
+        .event-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+
+        .event-card:hover .event-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .event-card-front, .event-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .event-card-back {
+            background: var(--card);
+            transform: rotateY(180deg);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .event-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 30px;
+            background: var(--card);
+        }
+
+        .event-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .event-content p {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .event-card-back h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .event-card-back p {
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .event-highlights {
+            background: rgba(26, 62, 111, 0.05);
+            padding: 20px;
+            border-radius: var(--border-radius);
+        }
+
+        .event-highlights h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .event-highlights ul {
+            padding-left: 20px;
+        }
+
+        .event-highlights li {
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        /* Modal Styles */
+        .event-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            width: 80%;
+            max-width: 900px;
+            background: var(--card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 25px 30px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .modal-poster {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .event-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .event-info {
+            background: rgba(249, 168, 38, 0.1);
+            padding: 25px;
+            border-radius: var(--border-radius);
+        }
+
+        .event-info p {
+            margin-bottom: 10px;
+        }
+
+        .event-info p strong {
+            color: var(--primary);
+        }
+
+        .event-description {
+            background: rgba(26, 62, 111, 0.05);
+            padding: 25px;
+            border-radius: var(--border-radius);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 70px 0 30px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            color: var(--accent);
+            min-width: 20px;
+        }
+
+        .contact-info {
+            list-style: none;
+            width: 100%;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 5px;
+            min-width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px 20px 0;
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1100px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 160px 5% 80px;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 60px;
+                max-width: 100%;
+            }
+            
+            .logo-circle {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .logo-circle img {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .event-details {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background: var(--card);
+                width: 280px;
+                height: calc(100vh - 80px);
+                flex-direction: column;
+                padding: 40px 20px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .event-card {
+                height: 450px;
+            }
+            
+            .event-img {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .logo-circle {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .logo-circle img {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 25px;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 140px 5% 60px;
+            }
+            
+            .logo-circle {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .logo-circle img {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .event-card {
+                height: 420px;
+            }
+            
+            .event-img {
+                height: 250px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="images/Amrita_logo.height-122.png" alt="Amrita Vishwa Vidyapeetham" class="logo college-logo">
+            <div class="logo-separator"></div>
+            <img src="images/IIC-logo.png" alt="Institution's Innovation Council" class="logo iic-logo">
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#team">Team</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Institution's Innovation Council</h1>
+            <h2 class="hero-subtitle">(Ministry of Education Initiative)</h2>
+            <p>The Institution's Innovation Council fosters a vibrant ecosystem of creativity and entrepreneurship, bridging academia and industry to transform ideas into impactful solutions.</p>
+            <a href="#about" class="cta-button">Learn More</a>
+        </div>
+        <div class="hero-logo">
+            <div class="logo-circle">
+                <img src="images/IIC-logo.png" alt="logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">About <span>IIC</span></h2>
+        <div class="about-container">
+            <p>In the year 2018, the Ministry of Education (MoE) through MoE's Innovation Cell (MIC) launched the Institution's Innovation Council (IIC) program in collaboration with AICTE for Higher Educational Institutions (HEIs) to systematically foster the culture of innovation and start-up ecosystem in education institutions.</p>
+            <p>Primarily, IICs' role is to engage large number of faculty, students and staff in various innovation and entrepreneurship related activities such as ideation, Problem solving, Proof of Concept development, Design Thinking, IPR, project handling and management at Pre-incubation/Incubation stage, etc., so that innovation and entrepreneurship ecosystem gets established and stabilized in HEIs.</p>
+            
+            <h3><i class="fas fa-bullseye"></i> Primary Focus</h3>
+            <p>The primary focus of an Institution's Innovation Council (IIC) is to foster a culture of innovation and entrepreneurship within higher education institutions (HEIs). This involves creating a vibrant local innovation ecosystem, supporting student startups, and preparing institutions for the Atal Ranking of Institutions on Innovation Achievements framework.</p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <h2 class="section-title">Our <span>Leadership Team 1</span></h2>
+
+        
+        
+        <div class="carousel-container">
+            <h3 class="carousel-title">Core Members 2</h3>
+            <div class="team-grid">
+                <!-- Core Team Members -->
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="images/Ann_Mariya_Mathew.jpeg" alt="Ann Mariya Mathew">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>President</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="images/Antoine_Griezmann.jpeg" alt="Ann Mariya Mathew">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Vice President</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="images/Vrinda.png" alt="Dr. Karthik Rao">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Secretary</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="images/Aparna_M.jpg" alt="Ann Mariya Mathew">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Treasurer</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="images/Jayasudiksha.jpg" alt="Ann Mariya Mathew">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Industry Liaison</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="images/Abhinavu.jpg" alt="Ann Mariya Mathew">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Research Head</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Dr. Meera Nair">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Student Engagement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="carousel-container">
+            <h3 class="carousel-title">Technical Team </h3>
+            <div class="team-grid">
+                <!-- Technical Team Members -->
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Arjun Kumar">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Tech Lead</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Neha Sharma">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Rahul Verma">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>AI Specialist</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Priya Desai">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Data Scientist</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Arjun Kumar">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Tech Lead</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Neha Sharma">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Rahul Verma">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>AI Specialist</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Priya Desai">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Data Scientist</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Arjun Kumar">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Tech Lead</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Neha Sharma">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Rahul Verma">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>AI Specialist</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="profile-container">
+                        <div class="profile-img">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Priya Desai">
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Ann Mariya Mathew</h3>
+                        <p>Data Scientist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section" id="events">
+        <h2 class="section-title">Our <span>Innovation Events</span></h2>
+        
+        <div class="events-grid">
+            <!-- Event Cards -->
+            <div class="event-card" onclick="openEventModal('innovation-summit')">
+                <div class="event-card-inner">
+                    <div class="event-card-front">
+                        <img src="images/1.png" alt="Annual Innovation Summit">
+                        <div class="event-content">
+                            <h3>Annual Innovation Summit</h3>
+                        </div>
+                    </div>
+                    <div class="event-card-back">
+                        <h3>More Details</h3>
+                        <p>This premier event brings together thought leaders from academia and industry to explore cutting-edge innovations and entrepreneurial opportunities.</p>
+                        <div class="event-highlights">
+                            <h4>Key Highlights:</h4>
+                            <ul>
+                                <li>Keynote speeches from industry pioneers</li>
+                                <li>Startup pitch sessions</li>
+                                <li>Innovation showcase</li>
+                                <li>Networking sessions</li>
+                            </ul>
+                        </div>
+                        <p><strong>Click to view full details</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="event-card" onclick="openEventModal('hackathon')">
+                <div class="event-card-inner">
+                    <div class="event-card-front">
+                        <img src="images/2.png" alt="24-Hour Hackathon">
+                        <div class="event-content">
+                            <h3>24-Hour Hackathon</h3>
+                        </div>
+                    </div>
+                    <div class="event-card-back">
+                        <h3>More Details</h3>
+                        <p>A high-energy event where students form teams to develop innovative solutions to real-world challenges within 24 hours.</p>
+                        <div class="event-highlights">
+                            <h4>Key Highlights:</h4>
+                            <ul>
+                                <li>24-hour coding challenge</li>
+                                <li>Mentorship from industry experts</li>
+                                <li>Prizes for top innovations</li>
+                                <li>Networking opportunities</li>
+                            </ul>
+                        </div>
+                        <p><strong>Click to view full details</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="event-card" onclick="openEventModal('startup-pitch')">
+                <div class="event-card-inner">
+                    <div class="event-card-front">
+                        <img src="images/3.png" alt="Startup Pitch Competition">
+                        <div class="event-content">
+                            <h3>Startup Pitch Competition</h3>
+                        </div>
+                    </div>
+                    <div class="event-card-back">
+                        <h3>More Details</h3>
+                        <p>A competitive event where student entrepreneurs pitch their startup ideas to a panel of investors and industry experts.</p>
+                        <div class="event-highlights">
+                            <h4>Key Highlights:</h4>
+                            <ul>
+                                <li>Pitch presentations to investors</li>
+                                <li>Feedback from industry experts</li>
+                                <li>Funding opportunities</li>
+                                <li>Networking with venture capitalists</li>
+                            </ul>
+                        </div>
+                        <p><strong>Click to view full details</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="event-card" onclick="openEventModal('design-workshop')">
+                <div class="event-card-inner">
+                    <div class="event-card-front">
+                        <img src="images/4.png" alt="Design Thinking Workshop">
+                        <div class="event-content">
+                            <h3>Design Thinking Workshop</h3>                        </div>
+                    </div>
+                    <div class="event-card-back">
+                        <h3>More Details</h3>
+                        <p>Hands-on workshop teaching design thinking methodologies for innovative problem solving.</p>
+                        <div class="event-highlights">
+                            <h4>Key Highlights:</h4>
+                            <ul>
+                                <li>Human-centered design principles</li>
+                                <li>Ideation techniques</li>
+                                <li>Prototyping methods</li>
+                                <li>Case studies</li>
+                            </ul>
+                        </div>
+                        <p><strong>Click to view full details</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- New Events -->
+            <div class="event-card" onclick="openEventModal('ip-workshop')">
+                <div class="event-card-inner">
+                    <div class="event-card-front">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="IP Rights Workshop">
+                        <div class="event-content">
+                            <h3>IP Rights Workshop</h3>
+                        </div>
+                    </div>
+                    <div class="event-card-back">
+                        <h3>More Details</h3>
+                        <p>Workshop focused on understanding intellectual property rights and the patent application process.</p>
+                        <div class="event-highlights">
+                            <h4>Key Highlights:</h4>
+                            <ul>
+                                <li>Types of intellectual property</li>
+                                <li>Patent filing process</li>
+                                <li>Case studies of successful patents</li>
+                                <li>Q&A with IP experts</li>
+                            </ul>
+                        </div>
+                        <p><strong>Click to view full details</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="event-card" onclick="openEventModal('innovation-challenge')">
+                <div class="event-card-inner">
+                    <div class="event-card-front">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sustainable Innovation Challenge">
+                        <div class="event-content">
+                            <h3>Sustainable Innovation Challenge</h3>
+                        </div>
+                    </div>
+                    <div class="event-card-back">
+                        <h3>More Details</h3>
+                        <p>A challenge to develop sustainable innovations addressing environmental issues and climate change.</p>
+                        <div class="event-highlights">
+                            <h4>Key Highlights:</h4>
+                            <ul>
+                                <li>Focus on sustainable development goals</li>
+                                <li>Expert mentorship</li>
+                                <li>Prototype development support</li>
+                                <li>Funding for winning projects</li>
+                            </ul>
+                        </div>
+                        <p><strong>Click to view full details</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Event Modals -->
+    <div class="event-modal" id="innovation-summit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Annual Innovation Summit 2023</h3>
+                <button class="close-modal" onclick="closeEventModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="images/1.png" alt="Annual Innovation Summit" class="modal-poster">
+                
+                <div class="event-details">
+                    <div class="event-info">
+                        <h4>Event Information</h4>
+                        <p><strong>Date:</strong> October 15-16, 2023</p>
+                        <p><strong>Time:</strong> 9:00 AM - 6:00 PM</p>
+                        <p><strong>Venue:</strong> University Innovation Center</p>
+                        <p><strong>Participants:</strong> 500+ innovators and industry leaders</p>
+                    </div>
+                    
+                    <div class="event-highlights">
+                        <h4>Event Highlights</h4>
+                        <ul>
+                            <li>Keynote speeches from leading tech CEOs</li>
+                            <li>Panel discussions on emerging technologies</li>
+                            <li>Startup showcase and exhibition</li>
+                            <li>Networking sessions with investors</li>
+                            <li>Innovation awards ceremony</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="event-description">
+                    <h4>About the Event</h4>
+                    <p>The Annual Innovation Summit is our flagship event that brings together the brightest minds in academia, industry, and entrepreneurship. This year's theme was "Innovating for Sustainable Future," focusing on technologies and solutions that address global challenges while creating economic opportunities.</p>
+                    <p>Attendees had the opportunity to learn from industry pioneers, participate in hands-on workshops, and connect with potential collaborators and investors. The event featured over 30 innovative startups showcasing their solutions in areas such as clean energy, healthcare technology, and sustainable agriculture.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="event-modal" id="hackathon-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>24-Hour Hackathon 2023</h3>
+                <button class="close-modal" onclick="closeEventModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="images/2.png" alt="24-Hour Hackathon" class="modal-poster">
+                
+                <div class="event-details">
+                    <div class="event-info">
+                        <h4>Event Information</h4>
+                        <p><strong>Date:</strong> August 7-8, 2023</p>
+                        <p><strong>Time:</strong> 10:00 AM - 10:00 AM (24 hours)</p>
+                        <p><strong>Venue:</strong> University Tech Hub</p>
+                        <p><strong>Participants:</strong> 150 students in 30 teams</p>
+                    </div>
+                    
+                    <div class="event-highlights">
+                        <h4>Event Highlights</h4>
+                        <ul>
+                            <li>24-hour coding marathon</li>
+                            <li>Focus on solving real-world problems</li>
+                            <li>Mentorship from industry professionals</li>
+                            <li>$10,000 in prizes</li>
+                            <li>Internship opportunities for winners</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="event-description">
+                    <h4>About the Event</h4>
+                    <p>The 24-Hour Hackathon challenged student teams to develop innovative solutions to pressing societal problems within a tight timeframe. This year's challenges focused on healthcare accessibility, sustainable transportation, and education technology.</p>
+                    <p>Participants worked through the night, fueled by coffee, snacks, and their passion for innovation. The event culminated in presentations to a panel of judges from leading tech companies, with the winning team developing an AI-powered platform for early detection of learning disabilities in children.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="event-modal" id="startup-pitch-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Startup Pitch Competition 2023</h3>
+                <button class="close-modal" onclick="closeEventModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="images/3.png" alt="Startup Pitch" class="modal-poster">
+                
+                <div class="event-details">
+                    <div class="event-info">
+                        <h4>Event Information</h4>
+                        <p><strong>Date:</strong> June 12, 2023</p>
+                        <p><strong>Time:</strong> 2:00 PM - 6:00 PM</p>
+                        <p><strong>Venue:</strong> University Auditorium</p>
+                        <p><strong>Participants:</strong> 15 startups, 8 investors</p>
+                    </div>
+                    
+                    <div class="event-highlights">
+                        <h4>Event Highlights</h4>
+                        <ul>
+                            <li>Pitch presentations to investors</li>
+                            <li>Feedback from industry experts</li>
+                            <li>Funding opportunities</li>
+                            <li>Networking with venture capitalists</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="event-description">
+                    <h4>About the Event</h4>
+                    <p>The Startup Pitch Competition provided a platform for student entrepreneurs to present their innovative business ideas to a panel of experienced investors and industry experts. This event offered participants the unique opportunity to secure funding, gain valuable feedback, and establish connections within the startup ecosystem.</p>
+                    <p>Participants had 10 minutes to pitch their ideas followed by a 5-minute Q&A session with the judges. The competition was intense, with startups showcasing solutions ranging from sustainable packaging to AI-driven healthcare diagnostics. The winning team secured $25,000 in seed funding and mentorship opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="event-modal" id="design-workshop-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Design Thinking Workshop 2022</h3>
+                <button class="close-modal" onclick="closeEventModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="images/4.png" alt="Design Workshop" class="modal-poster">
+                
+                <div class="event-details">
+                    <div class="event-info">
+                        <h4>Event Information</h4>
+                        <p><strong>Date:</strong> September 5-6, 2022</p>
+                        <p><strong>Time:</strong> 10:00 AM - 4:00 PM</p>
+                        <p><strong>Venue:</strong> Design Innovation Lab</p>
+                        <p><strong>Participants:</strong> 80 students and faculty</p>
+                    </div>
+                    
+                    <div class="event-highlights">
+                        <h4>Event Highlights</h4>
+                        <ul>
+                            <li>Human-centered design principles</li>
+                            <li>Ideation techniques</li>
+                            <li>Prototyping methods</li>
+                            <li>Case studies</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="event-description">
+                    <h4>About the Event</h4>
+                    <p>The Design Thinking Workshop introduced participants to the principles and methodologies of human-centered design. Through interactive sessions and hands-on activities, attendees learned how to approach complex problems with empathy, creativity, and innovation.</p>
+                    <p>The workshop covered the entire design thinking process: empathizing with users, defining problems, ideating solutions, prototyping concepts, and testing ideas. Participants worked in teams to tackle real-world challenges, applying the techniques they learned to develop innovative solutions. By the end of the workshop, each team had developed a prototype and presented their solution to the group.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="event-modal" id="ip-workshop-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>IP Rights Workshop 2023</h3>
+                <button class="close-modal" onclick="closeEventModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="IP Workshop" class="modal-poster">
+                
+                <div class="event-details">
+                    <div class="event-info">
+                        <h4>Event Information</h4>
+                        <p><strong>Date:</strong> March 18, 2023</p>
+                        <p><strong>Time:</strong> 10:00 AM - 2:00 PM</p>
+                        <p><strong>Venue:</strong> Law Department Seminar Hall</p>
+                        <p><strong>Participants:</strong> 120 innovators and researchers</p>
+                    </div>
+                    
+                    <div class="event-highlights">
+                        <h4>Event Highlights</h4>
+                        <ul>
+                            <li>Types of intellectual property</li>
+                            <li>Patent filing process</li>
+                            <li>Case studies of successful patents</li>
+                            <li>Q&A with IP experts</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="event-description">
+                    <h4>About the Event</h4>
+                    <p>The Intellectual Property Rights Workshop provided crucial knowledge about protecting innovations through proper intellectual property management. This workshop was designed for researchers, innovators, and entrepreneurs who wanted to understand how to safeguard their creative works and inventions.</p>
+                    <p>Participants learned about different types of intellectual property including patents, trademarks, copyrights, and trade secrets. The session included practical guidance on the patent application process, strategies for commercializing intellectual property, and case studies of successful IP management from both academia and industry.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Amrita Vishwa Vidyapeetham,<br>Kochi, Kerala - 682024</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 422 2685 000</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>iic@amrita.edu</span>
+                    </li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About IIC</a></li>
+                    <li><a href="#team"><i class="fas fa-chevron-right"></i> Our Team</a></li>
+                    <li><a href="#events"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Innovation Grants</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Startup Incubator</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Research Publications</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Student Projects</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Industry Partnerships</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Institution's Innovation Council, Amrita Vishwa Vidyapeetham. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize Particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#1a3e6f" },
+                    shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#1a3e6f",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    },
+                    modes: {
+                        grab: { distance: 140, line_linked: { opacity: 1 } },
+                        push: { particles_nb: 4 }
+                    }
+                },
+                retina_detect: true
+            });
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Event Modal Functions
+        function openEventModal(eventId) {
+            const modal = document.getElementById(`${eventId}-modal`);
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeEventModal() {
+            const modals = document.querySelectorAll('.event-modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside content
+        window.addEventListener('click', (e) => {
+            const modals = document.querySelectorAll('.event-modal');
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    closeEventModal();
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
